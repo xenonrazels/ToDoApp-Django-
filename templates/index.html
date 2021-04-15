@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+    <style>
+        body{
+        margin:0;
+        min-width: 250px;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        header{
+        background-color:rgba(38, 179, 38, 0.877);
+        background-image: radial-gradient(circle, rgba(38, 179, 38, 0.877)   39%, rgba(51,56,57,1) 96%);
+        padding:2em;
+        color :white;
+        }
+        h1{
+            text-align: center;
+        }
+
+        main{
+            height: max-content;
+            margin:2em;
+            padding:2em;
+            background-image: linear-gradient(105deg, rgba(16, 193, 196, 0.89) 39%, rgba(51,56,57,1) 96%);
+            flood-color: blanchedalmond;
+        }
+        ul {
+        margin:0;
+        padding:0;
+        }
+
+        .search-section{
+            align-items: center;
+            position:relative;
+        }
+        form{
+            padding: 0.5em;
+        }
+        input{
+            margin:0.2em;
+            padding:0.6em;
+            border: 0.2em solid white;
+            border-radius: 5px;
+        }
+        input[type=text]{
+            width: 60%;
+        }
+        input[type=submit]{
+            background-image: linear-gradient(105deg, rgb(5, 92, 255) 39%, rgba(51,56,57,1) 96%);
+            color:white;
+            width: 25%;
+            align-items: right;
+            position: absolute;
+
+        }
+        input[type=submit]:hover{
+            background-image: linear-gradient(105deg, rgba(16, 77, 190, 0.781) 39%, rgba(51,56,57,1) 96%);
+            color:white;
+            cursor: pointer;
+        }
+        ul {
+            content: "";
+            clear: both;
+        }
+        button{
+            border:0.2em solid white;
+            border-radius: 0.2em;
+            padding:0.5em;
+        }
+        ul li{
+            text-decoration: none;
+            list-style-type: none;
+            background: #ffe5e5;
+            margin: 0.2em;
+            padding:0.4em;
+        }
+        ul li:nth-child(odd) {
+            background-color: rgb(92, 194, 160);
+            text-decoration: none;
+            list-style-type: none;
+            margin: 0.2em;
+            padding:0.4em;
+        }
+       li button{
+            float:right;           
+            margin-right: 0.1em;
+            padding:0.5em;
+        }
+            
+        li button:hover{
+            background-color: blueviolet;
+            padding:0.2em;
+            margin-top: 0;
+            color:white;
+            cursor: pointer;
+        }
+    </style> 
+ </head>
+<body>
+    <header>
+        <H1>Django To Do list app</H1>
+        <nav> 
+        </nav>
+    </header>
+    <main>
+    <section>
+    <div class="search-section">
+        <form action="" method="POST">
+        {% csrf_token %}
+        <input type = "text" id="addtitle" name='addtitle' placeholder="Enter your Title">
+        <input type = "submit" value="ADD">
+        </form>
+    </div>
+    </section> 
+     <section class="todo-list">
+        <ul>
+            {% for todo in todos reversed %}
+            <li class="title">{{ todo.title | title }}<a href="delete/{{ todo.id }}" style="text-decoration:none;"> <button class="delete-title"><b><em> Delete</em></b></button></a> </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    </main>
+    <footer>
+
+    </footer>
+
+</body>
+</html> 
